@@ -1,13 +1,13 @@
 import conversationModel from "../models/conversation.model.js";
 
 export default class ConversationDAO {
-  findOne = async (senderId, reciverId) =>
+  findOne = async (senderId, receiverId) =>
     await conversationModel.findOne({
-      participants: { $all: [senderId, reciverId] },
+      participants: { $all: [senderId, receiverId] },
     });
-  create = async (senderId, reciverId) =>
+  create = async (senderId, receiverId) =>
     await conversationModel.create({
-      participants: [senderId, reciverId],
+      participants: [senderId, receiverId],
     });
   update = async (id, data) =>
     await conversationModel.findByIdAndUpdate(id, data, { new: true });

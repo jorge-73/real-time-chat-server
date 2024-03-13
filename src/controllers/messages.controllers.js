@@ -11,7 +11,7 @@ class MessageControllers {
         senderId,
         userToChatId
       );
-      if (!conversation) return res.sendRequestError("Conversation not found");
+      if (!conversation) return res.sendSuccess([]);
       const messages = conversation.messages;
       res.sendSuccess(messages);
     } catch (error) {

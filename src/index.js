@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to the api" });
 });
 app.use("/api", authRouter.getRouter());
-app.use("/api/message", messageRouter.getRouter());
+app.use("/api/messages", messageRouter.getRouter());
 app.use("/api/users", usersRouter.getRouter());
 
 connectDataBase();
