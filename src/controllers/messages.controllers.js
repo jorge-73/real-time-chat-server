@@ -1,6 +1,7 @@
 import logger from "../utils/logger.js";
 import { ConversationService } from "../services/conversation.service.js";
 import { MessageService } from "../services/message.service.js";
+import { getReceiverSocketId, io } from "../socket/socket.js";
 
 class MessageControllers {
   async getMessage(req, res) {
@@ -42,6 +43,12 @@ class MessageControllers {
         conversation.messages.push(newMessage._id);
         await ConversationService.update(conversation._id, conversation);
       }
+
+      const receiverSocketId = getReceiverSocketId(receiverId);
+      if (receiverSocketId) {
+        io.to(receiverSocketId).emit("newMessage", newMessage);
+      }
+
       res.createdSuccess(newMessage);
     } catch (error) {
       logger.error("Send message error", error.message);
