@@ -13,7 +13,7 @@ export const generateTokenAndSetCookie = (userId, res) => {
   res.cookie(SIGNED_COOKIE_KEY, token, {
     maxAge: 15 * 24 * 60 * 60 * 1000, //MS
     httpOnly: true,
-    sameSite: "strict",
+    sameSite: "none",
     secure: NODE_ENV !== "dev",
   });
 };
