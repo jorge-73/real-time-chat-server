@@ -14,7 +14,8 @@ export const generateTokenAndSetCookie = (userId, res) => {
     maxAge: 15 * 24 * 60 * 60 * 1000, //MS
     httpOnly: true,
     sameSite: "none",
-    secure: NODE_ENV !== "dev",
+    // secure: NODE_ENV !== "dev",
+    secure: true,
   });
 };
 
